@@ -1,0 +1,23 @@
+.movie-table {
+  display: grid;
+  height: 200px;
+  grid-template-columns: 200px;
+  color: white;
+};
+
+.title {
+  background-color: paleturquoise;
+};
+
+.column {
+};
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding: 15px;
+  border: 5px dashed mintcream;
+  background-color: palegreen;
+};
