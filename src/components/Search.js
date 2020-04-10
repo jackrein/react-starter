@@ -10,9 +10,9 @@ class Search extends React.Component {
   }
 
   handleChange(event) {
+    event.preventDefault();
     this.setState({ filterText: event.target.value });
     this.props.findMovie(this.state.filterText);
-    event.preventDefault();
   }
 
   render() {

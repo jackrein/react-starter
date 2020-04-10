@@ -7,9 +7,11 @@ const MovieList = (props) => {
   return (
   <div className='movie-list'>
     {message}
-    {props.movies.map((movie, id) => 
-      <MovieListItem movie={movie} key={id} />
-    )}
+    <section className='list rows'>
+      {props.movies.map((movie, id) => 
+        <MovieListItem movie={movie} key={id} />
+      )}
+    </section>
   </div>
   )
 };

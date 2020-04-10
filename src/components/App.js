@@ -1,19 +1,18 @@
 import React from 'react';
 import MovieList from './MovieList';
 import Search from './Search';
+import AddMovie from './AddMovie';
 import '../main.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
       results: movies
     };
 
     this.findMovie = this.findMovie.bind(this);
-    this.handleText = this.handleText.bind(this);
-    this.handleAdd = this.handleAdd.bind(this);
+    this.addMovie = this.addMovie.bind(this);
   }
   
   findMovie(search) {
@@ -25,45 +24,22 @@ class App extends React.Component {
     this.setState({results: filtered});
   }
 
-  handleText(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleAdd(event) {
-    movies.push({title: this.state.value, source: 'user', watched: false});
-    this.setState({value: ''});
+  addMovie(event, movie) {
     event.preventDefault();
+    this.setState({
+      results: [...this.state.results, {title: movie, source: 'user', watched: false}]
+    });
   }
 
   render(){
-    const userMovies = movies.filter((movie) => movie.source === 'user');
     return(
     <div className='movie-table'>
-      <h2 className='title-bar'>Movie List</h2>
-      <form className='user-add' onSubmit={this.handleAdd}>
-        <input
-          className='add-movie'
-          type='text'
-          value={this.state.value}
-          onChange={this.handleText}
-          placeholder='Add movie title here' />
-
-        <input
-          className='btn add-btn'
-          type='submit'
-          onClick={this.handleAdd}
-          value='Add' />
-      </form>
+      <div className='title-bar'><h2>Movie List</h2></div>
       <div className='main column'>
+        <AddMovie addMovie={this.addMovie} />
         <Search movies={movies} findMovie={this.findMovie} />
         <MovieList movies={this.state.results} />
       </div>
-      <section className='list row'>
-        {this.state.results.map((movie, id) => 
-          <div className='row' key={id}>
-            {movie.title}
-          </div>)}
-      </section>
     </div>
     );
   }
