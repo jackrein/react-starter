@@ -6,6 +6,4 @@ var MovieListItem = (props) => (
   </div>
 );
 
-// MovieListItem.propTypes
-
 export default MovieListItem;
